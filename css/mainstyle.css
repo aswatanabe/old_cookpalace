@@ -1,0 +1,137 @@
+@charset "utf-8";
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    /* -------------------- 変数 -------------------- */
+    --base-width: 1024px;
+    --logicpx: calc(var(--base-width) / 1024);
+    --header-height: calc(var(--logicpx) * 60);
+    --footer-height: calc(var(--logicpx) * 60);
+    --color-main: rgb(254 146 51);
+    --color-font1: rgb(77 77 77);
+
+    /* -------------------- 基本設定 -------------------- */
+    font-family: "UD デジタル 教科書体 NP-R", "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", sans-serif;
+    font-size: max(16px, var(--logicpx) * 18);
+    color: var(--color-font1);
+    scroll-behavior: smooth;
+}
+
+/* =====================================================================
+書式（共通）
+===================================================================== */
+h1 {
+    margin-block: 1.5rem;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+h2 {
+    margin-block-start: 1rem;
+    margin-block-end: 2rem;
+    font-size: 1.8em;
+}
+
+h3 {
+    margin-block-end: 1rem;
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.3em;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:is(:hover, :focus) {
+    text-decoration: underline;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* =====================================================================
+レイアウト（共通）
+===================================================================== */
+header, main, footer, section, article, div, nav, ul, ol, dl, figure, p {
+    position: relative;
+    overflow: hidden;
+}
+
+body {
+    display: grid;
+    grid-template-areas:
+        "h h h"
+        ". m ."
+        "f f f";
+    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+    grid-template-columns: 1fr calc(var(--logicpx) * 1024) 1fr;
+    background-image: url("../images/background.jpg");
+    background-attachment: fixed;
+    background-position: center;
+}
+
+header {
+    display: grid;
+    grid-area: h;
+    place-content: center;
+    color: rgb(255 255 255);
+    background-color: var(--color-main);
+    inline-size: 100%;
+}
+
+main {
+    grid-area: m;
+}
+
+footer {
+    grid-area: f;
+    inline-size: 100%;
+}
+
+footer {
+    display: grid;
+    color: rgb(255 255 255);
+    background-color: var(--color-main);
+}
+
+footer > :is(p, small) {
+    margin: auto;
+}
+
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block: 1.5rem;
+    font-size: 0.8em;
+    color: var(--color-font1);
+}
+
+.breadcrumbs > li:not(:last-of-type)::after {
+    content: ">";
+    margin: 0.6em;
+}
+
+@media screen and (max-width: 1024px) {
+    :root {
+        --base-width: calc(100vw - 17px);
+    }
+}
+
+@media screen and (max-width: 786px) {
+    :root {
+        --base-width: calc(var(--logicpx) * 786);
+    }
+}

@@ -1,0 +1,632 @@
+/* =====================================================================
+「indexページ」「詳細ページ（四季彩々）」用の変数
+===================================================================== */
+:is(.gochitan, .shikisaisai) {
+    --section-margin-block: 2.5em;
+    --hover-border: 2px solid var(--color-main);
+    --hover-opacity: 0.9;
+}
+
+/* =====================================================================
+「indexページ」用の書式・レイアウト
+===================================================================== */
+.gochitan {
+    --hero-height: calc(100vh - var(--header-height));
+}
+
+/* 共通cssのリセットとmainの再設定
+===================================================================== */
+.gochitan {
+    display: block;
+}
+
+.gochitan header {
+    block-size: var(--header-height);
+}
+
+.gochitan footer {
+    block-size: var(--footer-height);
+}
+
+/* レイアウト
+===================================================================== */
+
+/* -------------------- mainの幅 -------------------- */
+
+.gochitan main > section {
+    margin: auto;
+    inline-size: calc(var(--logicpx) * 1024);
+}
+
+/* -------------------- メインビジュアル -------------------- */
+.gochitan main > div:nth-of-type(1) > figure {
+    block-size: var(--hero-height);
+}
+
+.gochitan main > div:nth-of-type(1) > figure > a {
+    min-inline-size: 100%;
+    block-size: 100%;
+}
+
+.gochitan main > div:nth-of-type(1) > figure > a > picture {
+    min-inline-size: 100%;
+    block-size: 100%;
+}
+
+.gochitan main > div:nth-of-type(1) > figure > a > picture > :is(source, img) {
+    min-inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+.gochitan main > div:nth-of-type(1) > figure > a > figcaption {
+    position: absolute;
+    font-size: 1.4em;
+    color: rgb(255 255 255);
+    text-shadow: 0 0 5px rgb(0 0 0);
+    inset-inline-start: 2em;
+    inset-block-end: 2em;
+}
+
+:is(#switch-webp, #switch-png) {
+    opacity: 0;
+    animation: imgfade 5s infinite;
+}
+
+@keyframes imgfade {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* -------------------- ページタイトル -------------------- */
+.gochitan main > div > h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding-block: 0.4em;
+    padding-inline: 0.6em;
+    font-size: 2.5em;
+    text-align: center;
+    text-shadow: 0 0 2px;
+    pointer-events: none;
+    background-image: url(../images/background.jpg);
+    transform: translate(-50%, -50%);
+    inline-size: min(80%, 10em);
+}
+
+/* -------------------- パンくずリスト -------------------- */
+.gochitan .breadcrumbs {
+    padding-inline-start: 1em;
+}
+
+/* -------------------- リード文 -------------------- */
+.gochitan main > section:nth-of-type(1) {
+    display: grid;
+    grid-template-areas:
+        "h2 lead1"
+        "h2 lead2";
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2em;
+    margin-block: var(--section-margin-block);
+}
+
+.gochitan main > section:nth-of-type(1) > h2 {
+    grid-area: h2;
+    margin: auto;
+}
+
+.gochitan main > section:nth-of-type(1) > h2 > p:nth-of-type(1) {
+    grid-area: lead1;
+}
+
+.gochitan main > section:nth-of-type(1) > h2 > p:nth-of-type(2) {
+    grid-area: lead2;
+}
+
+/* -------------------- スライダー -------------------- */
+
+/* スライドレール */
+.gochitan main > div:not(:first-of-type) {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* スライド画像をまとめたブロック */
+.gochitan main > div:nth-of-type(2) > ul {
+    display: flex;
+    flex-shrink: 0;
+    -webkit-animation: loop-slide 30s infinite linear 1s both;
+    animation: loop-slide 30s infinite linear 1s both;
+}
+
+.gochitan main > div:nth-of-type(3) > ul {
+    display: flex;
+    flex-shrink: 0;
+    -webkit-animation: loop-slide 40s infinite linear 1s both;
+    animation: loop-slide 40s infinite linear 1s both;
+}
+
+@keyframes loop-slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* スライド画像 */
+.gochitan main > div:not(:first-of-type) > ul > figure {
+    inline-size: 300px;
+    block-size: 225px;
+    margin: 0.5em;
+}
+
+.gochitan main > div:not(:first-of-type) > ul > figure > a > img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+.gochitan main > div:not(:first-of-type) > ul > figure > a > img:hover {
+    border: var(--hover-border);
+    opacity: var(--hover-opacity);
+}
+
+.gochitan main > div:not(:first-of-type) > ul > figure > a > figcaption {
+    position: absolute;
+    inset-inline-start: 1em;
+    inset-block-end: 1em;
+    font-size: 0.9em;
+    color: rgb(255 255 255);
+    text-shadow: 0 0 5px rgb(0 0 0);
+}
+
+/* ホバー時に動きを止める */
+.slide-paused:hover .slideshow1 {
+    animation-play-state: paused;
+}
+
+.slide-paused:hover .slideshow2 {
+    animation-play-state: paused;
+}
+
+/* -------------------- お知らせ -------------------- */
+.gochitan main > section:nth-of-type(2) {
+    margin-block: var(--section-margin-block);
+}
+
+.gochitan main > section:nth-of-type(2) > h2 {
+    text-align: center;
+}
+
+.gochitan main > section:nth-of-type(2) > dl {
+    margin: auto;
+    inline-size: 90%;
+}
+
+.gochitan main > section:nth-of-type(2) > dl > a {
+    display: flex;
+    justify-content: center;
+    line-height: 3em;
+    border-block-start: 1px solid black;
+}
+
+.gochitan main > section:nth-of-type(2) > dl > a:last-of-type {
+    border-block-end: 1px solid black;
+}
+
+.gochitan main > section:nth-of-type(2) > dl > a > dt {
+    inset-inline-start: 30%;
+    inline-size: 30%;
+}
+
+.gochitan main > section:nth-of-type(2) > dl > a > dd {
+    inset-inline-start: 50%;
+    inline-size: 50%;
+}
+
+/* =====================================================================
+「詳細ページ（四季彩々）」用の書式・レイアウト
+===================================================================== */
+
+/* -------------------- メインビジュアル -------------------- */
+.shikisaisai main > dl {
+    display: flex;
+    margin-block-end: 0.5em;
+}
+
+.shikisaisai main > dl > dt::after {
+    content: "：";
+}
+
+.shikisaisai main > dl > dd {
+    padding-inline-end: 2em;
+}
+
+.shikisaisai main > section:nth-of-type(1) {
+    display: grid;
+    grid-template-areas:
+        "main thumb1"
+        "main thumb2"
+        "main thumb3"
+        "main thumb4";
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 80% auto;
+    gap: 1em;
+    aspect-ratio: 5/3;
+}
+
+.shikisaisai main > section:nth-of-type(1) > h2 {
+    display: none;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:nth-of-type(1) {
+    grid-area: main;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:nth-of-type(2) {
+    grid-area: thumb1;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:nth-of-type(3) {
+    grid-area: thumb2;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:nth-of-type(4) {
+    grid-area: thumb3;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:nth-of-type(5) {
+    grid-area: thumb4;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p > img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+.shikisaisai main > section:nth-of-type(1) > p:not(:nth-of-type(1)) > img:hover {
+    cursor: pointer;
+    border: var(--hover-border);
+    opacity: var(--hover-opacity);
+}
+
+/* -------------------- 店舗概要 -------------------- */
+.shikisaisai main > section:nth-of-type(2) {
+    margin-block: var(--section-margin-block);
+}
+
+.shikisaisai main > section:nth-of-type(2) > h2 {
+    display: none;
+}
+
+.shikisaisai main > section:nth-of-type(2) > ul {
+    padding: 1em;
+    margin-block-start: 1.5em;
+    border: 1px dashed;
+}
+
+.shikisaisai main > section:nth-of-type(2) > ul > li {
+    padding-inline-start: 1em;
+}
+
+.shikisaisai main > section:nth-of-type(2) > ul > li::before {
+    content: "・";
+}
+
+/* -------------------- 店舗詳細 -------------------- */
+.shikisaisai main > section:nth-of-type(3) {
+    margin-block: var(--section-margin-block);
+}
+
+/*　----- タブ ----- */
+.shikisaisai main > section:nth-of-type(3) > h2 {
+    display: none;
+}
+
+.shikisaisai main > section:nth-of-type(3) > div {
+    display: flex;
+    justify-content: start;
+    justify-content: center;
+    margin-block: 1em;
+    margin-inline: auto;
+}
+
+.shikisaisai main > section:nth-of-type(3) > div > label {
+    inline-size: 15em;
+    block-size: 3em;
+    line-height: 3em;
+    text-align: center;
+}
+
+.shikisaisai main > section:nth-of-type(3) > div > label:not(:last-of-type) {
+    margin-inline-end: 0.2em;
+}
+
+.shikisaisai input#item1:checked ~ div > label:nth-of-type(1), .shikisaisai input#item2:checked ~ div > label:nth-of-type(2) {
+    border-block-end: 1px solid;
+}
+
+.shikisaisai input[type="radio"] {
+    display: none;
+}
+
+.shikisaisai input#item1 ~ section#info, .shikisaisai input#item2 ~ section#photo {
+    display: none;
+}
+
+.shikisaisai input#item1:checked ~ section#info {
+    display: block;
+}
+
+.shikisaisai input#item2:checked ~ section#photo {
+    display: grid;
+}
+
+/* ----- 店舗情報 ----- */
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > h3 {
+    display: none;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table, th, td {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table tr > th {
+    inline-size: 9em;
+    text-align: left;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table tr > :is(th, td) {
+    padding: 0.5em;
+}
+
+/* 電話番号リンク */
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table tr:nth-of-type(2) > td > a[href^="tel:"] {
+    color: var(--color-font1);
+    pointer-events: none;
+}
+
+/* アクセスGoogleマップリンク */
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table tr:nth-of-type(3) > td > iframe {
+    inline-size: 100%;
+    block-size: 50vh;
+    border: 0px;
+}
+
+/* ----- 割引 ----- */
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > section {
+    margin-block-start: 1em;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > section > h4 {
+    margin-block-end: 0.8em;
+    font-size: 1em;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > section > p > strong {
+    -webkit-text-emphasis: filled rgb(255 0 0);
+    text-emphasis: filled rgb(255 0 0);
+}
+
+/* ----- フォトギャラリー ----- */
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > h3 {
+    display: none;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1em;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) > figure {
+    position: relative;
+    inset-block-start: 0;
+    padding-block-end: 100%;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) > figure > img {
+    position: absolute;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) > figure > img:hover {
+    cursor: pointer;
+    border: var(--hover-border);
+    opacity: var(--hover-opacity);
+}
+
+.shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) > figure > figcaption {
+    position: absolute;
+    inset-inline-start: 0.5em;
+    inset-block-end: 0.5em;
+    color: rgb(255 255 255);
+    text-shadow: 0 0 5px rgb(0 0 0);
+}
+
+/* --- ポップアップ --- */
+
+/* 背景 */
+#zoomback {
+    overflow: visible;
+    position: fixed;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100vw;
+    block-size: 100vh;
+    background-color: rgb(0,0,0,0.8);
+    display:none; /* クリックされないときは非表示 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 拡大画像 */
+#zoomimg {   
+    inline-size: 30%;
+    border: solid 5px rgb(255,255,255);
+}
+
+.zoomup {
+    animation: zoomup 0.3s ease-out;
+}
+
+@keyframes zoomup {
+    from {
+        transform: scale(0);
+    }
+}
+
+/* =====================================================================
+メディアクエリ
+===================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .shikisaisai main {
+        padding-inline: 1em;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    /* -------------------- mainの幅 -------------------- */
+    .gochitan main > *:not(div:nth-of-type(1)) {
+        inline-size: calc(100vw - 17px);
+    }
+
+    .gochitan main > div:nth-of-type(1) > figure {
+        block-size: 100vw;
+    }
+
+    .gochitan main > div:nth-of-type(1) > figure > a > figcaption {
+        font-size: 1.2em;
+        inset-inline-start: 1em;
+        inset-block-end: 1em;
+    }
+
+    /* -------------------- タイトル -------------------- */
+    .gochitan main > div > h1 {
+        font-size: 2em;
+    }
+
+    /* -------------------- リード文 -------------------- */
+    .gochitan main > section:nth-of-type(1) {
+        grid-template-areas:
+            "h2"
+            "lead1"
+            "lead2";
+        grid-template-columns: 100%;
+        row-gap: 1em;
+        padding-inline: 1em;
+    }
+
+    .gochitan main > section:nth-of-type(1) > h2 {
+        text-align: center;
+    }
+
+    .gochitan main > section:nth-of-type(1) > h2 > br {
+        display: none;
+    }
+
+    /* -------------------- お知らせ -------------------- */
+    .gochitan main > section:nth-of-type(2) > dl > a {
+        display: block;
+        margin: auto;
+        line-height: 2em;
+    }
+
+    .gochitan main > section:nth-of-type(2) > dl > a > dt {
+        margin: auto;
+        inline-size: 85%;
+        font-size: 0.8em;
+    }
+
+    .gochitan main > section:nth-of-type(2) > dl > a > dd {
+        margin: auto;
+        inline-size: 85%;
+    }
+
+    .gochitan main > p:last-of-type {
+        text-align: center;
+        inline-size: 100%;
+    }
+
+    .shikisaisai main > dl {
+        display: grid;
+        grid-template-columns: 5em auto;
+        font-size: 14px;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) {
+        grid-template-areas:
+            "main main main main"
+            "thumb1 thumb2 thumb3 thumb4";
+        grid-template-rows: 40vh 10vh;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1em;
+        aspect-ratio: unset;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) > p:nth-of-type(1) {
+        grid-area: main;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) > p:nth-of-type(2) {
+        grid-area: thumb1;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) > p:nth-of-type(3) {
+        grid-area: thumb2;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) > p:nth-of-type(4) {
+        grid-area: thumb3;
+    }
+
+    .shikisaisai main > section:nth-of-type(1) > p:nth-of-type(5) {
+        grid-area: thumb4;
+    }
+
+    /* -------------------- 店舗詳細 -------------------- */
+
+    /* ----- 店舗情報 ----- */
+    .shikisaisai main > section:nth-of-type(3) > section:nth-of-type(1) > table tr:nth-of-type(2) > td > a[href^="tel:"] {
+        color: LinkText;
+        pointer-events: unset;
+    }
+
+    /* ----- フォトギャラリー ----- */
+    .shikisaisai main > section:nth-of-type(3) > section:nth-of-type(2) > div:nth-of-type(1) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.2em;
+    }
+
+    #zoomimg {
+        inline-size: 75%;
+        border: solid 5px rgb(255,255,255);
+    }
+}
